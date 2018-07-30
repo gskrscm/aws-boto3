@@ -25,9 +25,24 @@ def get_instance_tags(ecid):
     return tagl
 
 def create_ami_aws(ecl):
+    create_fmt = "siva-ami"
+    ec2 = boto3.client('ec2')
     for ec in ecl:
         print(ec)
-    #AMIid = ec.create_image(InstanceId=instance['InstanceId'], Name="Lambda - " + instance['InstanceId'] + " from " + create_fmt, Description="Lambda created AMI of instance " + instance['InstanceId'] + " from " + create_fmt, NoReboot=True, DryRun=False)
+        AMIid = ec2.create_image(InstanceId=ec, 
+                            Name="Lambda - " + ec + " from " + create_fmt, 
+                            Description="Lambda created AMI of instance " + ec + " from " + create_fmt, 
+                            NoReboot=True, DryRun=False)
+        print(AMIid)
 
-# ec2_list()
-create_ami_aws(ecl_test)
+        ami_image = ec2.Image(AMIid["ImageId"])
+
+        tags = get_instance_tags(ec)
+        for key, value in tags: 
+            ami_image.create_tags({'Key':key, 'Value':value})
+
+
+
+
+ec2_list()
+create_ami_aws(ecl)

@@ -24,6 +24,7 @@ def get_instance_tags(ecid):
     tagl = ec2instance.tags
     return tagl
 
+# create ami and set all tags. 
 def create_ami_aws(ecl):
     create_fmt = "siva-ami"
     ec2 = boto3.client('ec2')
@@ -40,8 +41,6 @@ def create_ami_aws(ecl):
         tags = get_instance_tags(ec)
         for key, value in tags: 
             ami_image.create_tags({'Key':key, 'Value':value})
-
-
 
 
 ec2_list()

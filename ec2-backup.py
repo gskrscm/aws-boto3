@@ -101,9 +101,6 @@ def aws_ami_deregister(amid):
     response = ec2_client.deregister_image(ImageId=amid, DryRun=False)
     return response 
 
-aws_ami_delte()
-
-
 if __name__ == "__main__": 
 
     # Get EC2 list: 

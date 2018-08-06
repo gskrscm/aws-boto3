@@ -5,3 +5,10 @@ Script to take backup of all ec2 instances, create AMIs with `DeleteOn` tag with
 ## Pre-requists: 
 1) Install AWSCLI and Configure. 
 2) Install python aws boto3 module. 
+
+
+
+## References: 
+* AWS BOTO Documentation: 
+https://boto3.readthedocs.io/en/latest/reference/services/index.html
+
